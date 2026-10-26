@@ -1,0 +1,153 @@
+body {
+	--dtl-pad: 12px;
+}
+
+/* ---------- Entries: Live Preview lines ---------- */
+
+.markdown-source-view.mod-cm6 .cm-line.dtl-head {
+	padding-top: var(--dtl-pad);
+	border-top: 1px solid var(--background-modifier-border);
+	font-size: var(--font-text-size);
+	line-height: var(--line-height-normal);
+}
+
+.markdown-source-view.mod-cm6 .cm-line.dtl-last {
+	padding-bottom: var(--dtl-pad);
+}
+
+/* Collapse the blank line between the header and the body */
+.markdown-source-view.mod-cm6 .cm-line.dtl-gap:not(.cm-active) {
+	line-height: 0.25em;
+	font-size: 0.25em;
+}
+
+/* ---------- Entries: reading view sections ---------- */
+
+.markdown-rendered .dtl-head {
+	padding-top: var(--dtl-pad);
+	border-top: 1px solid var(--background-modifier-border);
+}
+
+.markdown-rendered .dtl-last {
+	padding-bottom: var(--dtl-pad);
+}
+
+/* The header replaces the rendered h3 */
+.markdown-rendered .dtl-head > h3 {
+	display: none;
+}
+
+.markdown-rendered .dtl-head > .dtl-header {
+	display: flex;
+}
+
+.markdown-rendered .dtl-body > p {
+	margin-block: 0.3em;
+}
+
+/* ---------- Header ---------- */
+
+.dtl-header {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 4px;
+	font-family: var(--font-interface);
+	font-size: var(--font-ui-medium);
+	white-space: nowrap;
+	cursor: text;
+}
+
+.dtl-name {
+	font-weight: 700;
+	color: var(--text-normal);
+}
+
+.dtl-handle,
+.dtl-dot,
+.dtl-time {
+	color: var(--text-muted);
+	font-weight: 400;
+}
+
+/* ---------- Composer ---------- */
+
+.dtl-composer {
+	display: flex;
+	gap: 12px;
+	padding: var(--dtl-pad) 0;
+	font-family: var(--font-text);
+}
+
+.dtl-avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	overflow: hidden;
+	flex-shrink: 0;
+	background-color: var(--interactive-accent);
+	color: var(--text-on-accent);
+	font-family: var(--font-interface);
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 40px;
+	text-align: center;
+}
+
+.dtl-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.dtl-composer-main {
+	flex: 1;
+	min-width: 0;
+}
+
+.dtl-composer textarea.dtl-composer-input {
+	width: 100%;
+	min-height: 40px;
+	padding: 8px 0;
+	border: none;
+	background: transparent;
+	box-shadow: none;
+	resize: none;
+	overflow: hidden;
+	font-size: 1.2em;
+	line-height: 1.5;
+}
+
+.dtl-composer textarea.dtl-composer-input:focus,
+.dtl-composer textarea.dtl-composer-input:focus-visible {
+	border: none;
+	box-shadow: none;
+}
+
+.dtl-composer-footer {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding-top: 4px;
+}
+
+.dtl-composer-hint {
+	color: var(--text-faint);
+	font-size: var(--font-ui-smaller);
+}
+
+.dtl-composer-count {
+	margin-left: auto;
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}
+
+.dtl-composer button.dtl-composer-post {
+	border-radius: 999px;
+	padding: 0 18px;
+	font-weight: 700;
+}
+
+.dtl-composer button.dtl-composer-post:disabled {
+	opacity: 0.5;
+	cursor: default;
+}

@@ -1,0 +1,27 @@
+{
+	"name": "obsidian-daily-timeline",
+	"version": "0.1.0",
+	"description": "Twitter-style timeline for timestamped entries in Obsidian daily notes.",
+	"main": "main.js",
+	"type": "module",
+	"scripts": {
+		"dev": "node esbuild.config.mjs",
+		"build": "tsc --noEmit --skipLibCheck && node esbuild.config.mjs production",
+		"test": "node --test test/",
+		"version": "node version-bump.mjs && git add manifest.json versions.json"
+	},
+	"keywords": [
+		"obsidian",
+		"daily-notes",
+		"timeline"
+	],
+	"license": "MIT",
+	"devDependencies": {
+		"@codemirror/state": "^6.7.6",
+		"@codemirror/view": "^6.43.13",
+		"esbuild": "^0.28.2",
+		"obsidian": "^1.14.4",
+		"tslib": "^2.8.1",
+		"typescript": "^5.9.3"
+	}
+}
