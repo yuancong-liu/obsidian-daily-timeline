@@ -1,20 +1,22 @@
-import { App, TFile, moment, normalizePath } from "obsidian";
+import { App, TFile, normalizePath } from "obsidian";
 import type { DailyTimelineSettings } from "./settings";
+import { moment } from "./time";
 
 export interface DailyNoteConfig {
 	folder: string;
 	format: string;
 }
 
-interface CoreDailyNotes {
-	enabled?: boolean;
-	instance?: { options?: { folder?: string; format?: string } };
+/** The parts of Obsidian's internal (undocumented) plugin registry we read. */
+interface InternalPluginsApp {
+	internalPlugins?: {
+		getPluginById?(id: string): { instance?: { options?: { folder?: string; format?: string } } } | null;
+	};
 }
 
 /** Settings override the core Daily notes plugin; empty settings fall back to it. */
 export function getDailyNoteConfig(app: App, settings: DailyTimelineSettings): DailyNoteConfig {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const core: CoreDailyNotes | undefined = (app as any).internalPlugins?.getPluginById?.("daily-notes");
+	const core = (app as unknown as InternalPluginsApp).internalPlugins?.getPluginById?.("daily-notes");
 	const options = core?.instance?.options ?? {};
 
 	let folder = (settings.dailyFolder.trim() || options.folder || "").trim();
@@ -49,8 +51,7 @@ export function getTodayNote(app: App, config: DailyNoteConfig): TFile | null {
 	const direct = app.vault.getAbstractFileByPath(normalizePath(`${prefix}${now.format(config.format)}.md`));
 	if (direct instanceof TFile) return direct;
 
-	const basename = now.format(lastSegment(config.format));
-	return (
-		app.vault.getMarkdownFiles().find((f) => f.basename === basename && isDailyNote(f.path, config)) ?? null
-	);
+	// Notes in sub-folders the format doesn't describe: resolve by name like a [[link]] would.
+	const linked = app.metadataCache.getFirstLinkpathDest(now.format(lastSegment(config.format)), "");
+	return linked && isDailyNote(linked.path, config) ? linked : null;
 }

@@ -65,6 +65,7 @@ Download `main.js`, `manifest.json` and `styles.css` from the [latest release](.
 npm install
 npm run dev     # watch mode
 npm test        # unit tests for the parser
+npm run lint    # same ruleset as the community plugin review
 npm run build   # type-check and production build
 ```
 

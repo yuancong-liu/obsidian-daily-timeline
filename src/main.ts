@@ -1,9 +1,10 @@
-import { MarkdownPostProcessorContext, MarkdownView, Notice, Plugin, TFile, moment } from "obsidian";
+import { MarkdownPostProcessorContext, MarkdownView, Notice, Plugin, TFile } from "obsidian";
 import { ComposeModal, Composer } from "./composer";
 import { getDailyNoteConfig, getTodayNote, isDailyNote } from "./dailyNotes";
 import { renderHeader } from "./header";
 import { buildLivePreviewExtension } from "./livePreview";
 import { DEFAULT_SETTINGS, DailyTimelineSettingTab, DailyTimelineSettings } from "./settings";
+import { moment } from "./time";
 import { CODE_BLOCK_LANG, parseEntries, planInsert } from "./timeline";
 
 export default class DailyTimelinePlugin extends Plugin {
@@ -13,7 +14,8 @@ export default class DailyTimelinePlugin extends Plugin {
 	private refocusPath: string | null = null;
 
 	async onload() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+		const saved = (await this.loadData()) as Partial<DailyTimelineSettings> | null;
+		this.settings = Object.assign({}, DEFAULT_SETTINGS, saved);
 
 		this.registerEditorExtension(buildLivePreviewExtension(this));
 
