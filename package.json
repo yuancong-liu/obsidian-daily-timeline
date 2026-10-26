@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-daily-timeline",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Twitter-style timeline for timestamped entries in Obsidian daily notes.",
 	"main": "main.js",
 	"type": "module",
