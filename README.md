@@ -2,6 +2,8 @@
 
 Turn the timestamped entries in your daily notes into a Twitter-style timeline, and post new entries from a built-in composer.
 
+![Composer and a timeline entry in Live Preview](docs/screenshot.png)
+
 Your notes stay plain Markdown: every entry is just a `### HH:mm` heading followed by text. The plugin only changes how they look and makes adding them faster, so search, links and backlinks keep working, and the notes still read fine without the plugin.
 
 ## Features

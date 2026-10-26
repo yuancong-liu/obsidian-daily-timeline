@@ -4,7 +4,7 @@
 	"version": "0.1.0",
 	"minAppVersion": "1.4.0",
 	"description": "Turn timestamped entries in your daily notes into a social-media-style timeline, and post new ones from a built-in composer.",
-	"author": "Paul",
+	"author": "yuancong-liu",
 	"authorUrl": "https://github.com/yuancong-liu",
 	"isDesktopOnly": false
 }
